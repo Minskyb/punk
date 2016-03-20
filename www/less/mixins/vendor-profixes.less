@@ -1,0 +1,39 @@
+
+.transition(@effect){
+
+  -webkit-transition: @effect;
+  -moz-transition: @effect;
+  -ms-transition: @effect;
+  -o-transition: @effect;
+  transition: @effect;
+}
+
+.transition-transform(@str){
+  -webkit-transition: -webkit-transform @str ;
+  -moz-transition: -moz-transform @str ;
+  -ms-transition: -ms-transform @str ;
+  -o-transition: -o-transform @str ;
+  transition: transform @str ;
+}
+
+.transform-rotate(@X){
+  -webkit-transform:rotate(@X);
+  -moz-transform:rotate(@X);
+  -ms-transform:rotate(@X);
+  -o-transform:rotate(@X);
+  transform:rotate(@X);
+}
+
+.transform-origin(@str){
+  -webkit-transform-origin:  @str;
+  -moz-transform-origin: @str;
+  -ms-transform-origin: @str;
+  -o-transform-origin: @str;
+  transform-origin: @str;
+}
+
+.opacity(@opacity){
+  opacity: @opacity;
+  @opacity-ie:(@opacity*100);
+  filter:~"alpha(opacity=@{opacity-ie})";
+}

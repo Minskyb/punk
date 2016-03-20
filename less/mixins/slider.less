@@ -1,0 +1,27 @@
+.pk-slider-circle(@width,@height){
+  display: block;
+  width: @width;
+  height: @height;
+  border-radius: 50%;
+
+  position: absolute;
+  top: 50%;
+  margin-top: -@height/2;
+  z-index: 20;
+
+  .transition(~"background-color 0.3s");
+
+  cursor: pointer;
+}
+.pk-slider-line(@width,@height,@color){
+
+  width: @width;
+  height: @height;
+  background-color: @color;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -@height/2;
+  margin-left: -@width/2;
+}

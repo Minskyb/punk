@@ -1,0 +1,61 @@
+.pk-menu{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  .pk-menu-item{
+
+    color: #ffffff;
+    border-top: 1px solid #EDEDED;
+
+
+    &:after{
+      content: '';
+      clear: both;
+      display: table;
+    }
+
+    .pk-menu-item-bd{
+      padding: 10px 15px;
+
+      &.active{
+        background-color: #333;
+      }
+
+      &.selected{
+        color: red;
+      }
+
+      &:hover{
+        background-color: #444444;
+      }
+
+      & [class^='glyphicon']{
+        margin-right: 10px;
+      }
+
+    }
+
+    .pk-menu-item-cd{
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      padding: 10px 0;
+
+      .pk-menu-item{
+
+        margin-left: 20px;
+        border-top: 1px dashed #dedede;
+
+        &:first-child{
+          border-top: none;
+        }
+
+        &:hover{
+          background-color: #333;
+        }
+      }
+    }
+  }
+}
