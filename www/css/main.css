@@ -1382,48 +1382,33 @@ h1 {
   list-style: none;
 }
 .pk-menu {
-  padding: 0;
   margin: 0;
+  padding: 0;
   list-style: none;
+}
+.pk-menu a {
+  text-decoration: none;
+  color: #000;
 }
 .pk-menu .pk-menu-item {
-  color: #ffffff;
-  border-top: 1px solid #EDEDED;
-}
-.pk-menu .pk-menu-item:after {
-  content: '';
-  clear: both;
-  display: table;
-}
-.pk-menu .pk-menu-item .pk-menu-item-bd {
+  margin: 10px 0 10px 10px;
+  display: block;
   padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px #B0B0B0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
 }
-.pk-menu .pk-menu-item .pk-menu-item-bd.active {
-  background-color: #333;
-}
-.pk-menu .pk-menu-item .pk-menu-item-bd.selected {
-  color: red;
-}
-.pk-menu .pk-menu-item .pk-menu-item-bd:hover {
-  background-color: #444444;
-}
-.pk-menu .pk-menu-item .pk-menu-item-bd [class^='glyphicon'] {
-  margin-right: 10px;
-}
-.pk-menu .pk-menu-item .pk-menu-item-cd {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  padding: 10px 0;
-}
-.pk-menu .pk-menu-item .pk-menu-item-cd .pk-menu-item {
+.pk-menu .pk-menu-item:hover {
   margin-left: 20px;
-  border-top: 1px dashed #dedede;
+  background-color: #80b2ed;
 }
-.pk-menu .pk-menu-item .pk-menu-item-cd .pk-menu-item:first-child {
-  border-top: none;
-}
-.pk-menu .pk-menu-item .pk-menu-item-cd .pk-menu-item:hover {
-  background-color: #333;
+.pk-menu-cd {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 /*# sourceMappingURL=punk.css.map */
