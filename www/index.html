@@ -8,8 +8,8 @@
         <script src="./lib/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
-    <div class="pk-row pk-nav-fixed-top">
+<body style="overflow-y: scroll">
+    <div class="pk-nav-fixed-top">
         <div class="pk pk-col-sm-3">
             <h1>Punk.Li</h1>
         </div>
@@ -31,20 +31,32 @@
         </div>
     </div>
 
-    <div class="pk-row pk-f-l" style="margin-top: 42px;">
-        <div class="" style="width: 20%">
-            <ul class="pk-menu">
-                <li><a class="pk-menu-item" href="javascript:;">Canvas</a></li>
+    <div class="pk-f-l" style="margin-top: 42px;padding-top:15px; ">
+        <div class="pk-col-sm-2">
+            <div class="pk-box np shadow">
+                <div class="pk-input-group l-i">
+                    <input type="text" placeholder="搜索">
+                    <span class="glyphicon glyphicon-search pk-input-add" aria-hidden="true"></span>
+                </div>
+            </div>
+            <ul class="pk-menu pk-box np shadow" style="margin-top: 11px;">
+                <li><a class="pk-menu-item active" href="/index.html">Canvas</a></li>
                 <li>
-                    <a class="pk-menu-item" href="javascript:;">Ajax</a>
+                    <a class="pk-menu-item" href="/canvas.html">Ajax</a>
                     <ul class="pk-menu-cd">
-                        <li><a class="pk-menu-item">Ajax 基础教程</a></li>
-                        <li><a class="pk-menu-item">Ajax 发展史</a></li>
+                        <li><a class="pk-menu-item" >Ajax 基础教程</a></li>
+                        <li><a class="pk-menu-item" >Ajax 发展史</a></li>
                         <li><a class="pk-menu-item">Ajax 人文</a></li>
                     </ul>
                 </li>
                 <li><a class="pk-menu-item" href="javascript:;">Map</a></li>
             </ul>
+        </div>
+        <div class="pk-col-sm-10">
+            <div class="pk-nav-route pk-box shadow">
+                当前位置：Canvas / Canvas 基础
+            </div>
+            <div class="pk-box shadow" style="height: 500px;margin-top: 10px"></div>
         </div>
     </div>
 </body>

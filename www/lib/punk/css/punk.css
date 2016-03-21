@@ -48,6 +48,7 @@ h1 {
 .pk-row {
   display: block;
   position: relative;
+  margin: 0 -15px;
 }
 .pk-row:after {
   content: '';
@@ -1340,6 +1341,11 @@ h1 {
   right: 0;
   left: 0;
 }
+.pk-nav-route {
+  padding: 10px 15px;
+  border-radius: 4px;
+  background-color: #F5F5F5;
+}
 .pk-dropdown {
   position: relative;
 }
@@ -1360,24 +1366,55 @@ h1 {
   color: #000;
 }
 .pk-menu .pk-menu-item {
-  margin: 10px 0 10px 10px;
+  margin-top: 2px;
   display: block;
   padding: 10px 15px;
-  border-radius: 5px;
-  box-shadow: 2px 2px 2px 2px #B0B0B0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ;
+  border-radius: 4px;
+  border: 1px solid #ccc;
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   -ms-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
 }
-.pk-menu .pk-menu-item:hover {
-  margin-left: 20px;
-  background-color: #80b2ed;
+.pk-menu .pk-menu-item:hover,
+.pk-menu .pk-menu-item.active {
+  margin-left: 10px;
+  background-color: #F5F5F5;
 }
 .pk-menu-cd {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+.pk-box {
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+.pk-box.shadow {
+  box-shadow: #BDBDBD 0px 0px 10px 0px;
+}
+.pk-box.np {
+  padding: 0;
+}
+input {
+  padding: 10px 15px;
+  border-radius: 4px;
+  border: 1px solid #ccc !important;
+  width: 100%;
+}
+.pk-input-group {
+  position: relative;
+}
+.pk-input-group.l-i input {
+  padding-left: 35px;
+}
+.pk-input-group.l-i .pk-input-add {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 10px;
+  left: 15px;
+  color: #A9A9A9;
 }
 /*# sourceMappingURL=punk.css.map */

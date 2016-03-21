@@ -9,18 +9,21 @@
   }
 
   .pk-menu-item{
-    margin:10px 0 10px 10px;
+
+    margin-top: 2px;
     display: block;
-    padding: 10px 15px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 2px 2px #B0B0B0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ;
+
+    .box(10px,15px,@base-border-radius);
+    border: 1px solid @menu-border-color;                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ;
 
     .transition(~"0.3s");
 
-    &:hover{
-      margin-left: 20px;
-      background-color: #80b2ed;
+    &:hover,
+    &.active{
+      margin-left: 10px;
+      background-color: #F5F5F5;
     }
+
   }
 }
 

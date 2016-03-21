@@ -1,0 +1,27 @@
+input{
+  .box(10px,15px,@base-border-radius);
+  border:1px solid @input-border-color !important;
+  width: 100%;
+}
+
+.pk-input-group{
+
+  position: relative;
+
+  &.l-i{
+
+    input{
+      padding-left: 35px;
+    }
+
+    .pk-input-add{
+
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      top: 10px;
+      left: 15px;
+      color: @input-add-color;
+    }
+  }
+}
