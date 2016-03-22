@@ -57,15 +57,17 @@ define(['underscore','jquery'],function(_,$){
         // 判断是放在此处还是放入 render 中合适
         this.addEvent();
 
+        this.render();
+
     };
 
     /* 界面呈现 */
     BView.prototype.render = function(){
 
-        if(!this.$element){
-            this.renderImmediately = true;
-            return;
-        }
+//        if(!this.$element){
+//            this.renderImmediately = true;
+//            return;
+//        }
 
         this.$wrapper.empty();
         this.$wrapper.append(this.$element);

@@ -5,8 +5,9 @@
 
 define([
     'jquery',
+    './config/router',
     'extendJquery'
-],function($){
+],function($,router){
 
     function App(options){
 
@@ -25,6 +26,8 @@ define([
     App.prototype.hashChanged = function(){
 
         this.moduleId = this.getModuleIdByUrl();
+        this.moduleId = "undefined" == typeof router[this.moduleId] ? "404" : this.moduleId;
+
         this.module = this.loadModule('app/module/'+this.moduleId,function(View){
             this.module = new View({
                 $wrapper:this.$wrapper
@@ -48,13 +51,11 @@ define([
     App.prototype.loadModule = function(path,callback){
 
         var self = this;
-        try{
-            requirejs([path],function(View){
-                callback && callback.call(self,View);
-            });
-        }catch (e){
-            console.log("Yep");
-        }
+
+        requirejs([path],function(View){
+            callback && callback.call(self,View);
+        });
+
     }
 
     App.prototype.init = function(){

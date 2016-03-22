@@ -5,28 +5,28 @@
 
 define([
     'jquery',
-    'BView',
+    'BModule',
     'text!app/module/canvas.html',
     'extendJquery',
     'punk'
-],function($,BV,template){
+],function($,BM,template,extend){
 
     function Canvas(options){
-        BV.call(this,options);
+        BM.call(this,options);
     }
 
-    Canvas.prototype = $.PUNK.inheritPrototype(BV.prototype);
+    Canvas.prototype = $.PUNK.inheritPrototype(BM.prototype);
 
     Canvas.prototype.initProperty = function(){
 
-        BV.prototype.initProperty.call(this);
+        BM.prototype.initProperty.call(this);
 
         this.template = template;
     }
 
     Canvas.prototype.render =function(){
 
-        BV.prototype.render.call(this);
+        BM.prototype.render.call(this);
 
         $(".pk-slider").Slider({});
     }

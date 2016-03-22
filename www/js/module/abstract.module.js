@@ -7,7 +7,7 @@ define([
     'jquery',
     'BView',
     'extendJquery'
-],function(_,$,BV){
+],function($,BV){
 
     function BModule(options){
 
@@ -21,7 +21,7 @@ define([
         BV.prototype.initProperty.call(this);
 
         // 组件配置
-        this.views = {}
+        this.views = {};
 
         // 组件集合
         this.components = [];
@@ -55,9 +55,9 @@ define([
         BV.prototype.render.call(this);
 
         this.initComponents();
-        $.each(this.components,function(K,V){
-            V.render();
-        });
+//        $.each(this.components,function(K,V){
+//            V.render();
+//        });
     }
 
     return BModule;
