@@ -19,7 +19,8 @@ module.exports = function(grunt){
             },
             dist:{
                 src:[
-                    'js/slider.js'
+                    'js/slider.js',
+                    'js/menu.js'
                 ],
                 dest:'dist/js/<%=pkg.name%>.js'
             },
@@ -82,7 +83,7 @@ module.exports = function(grunt){
             dist:{
                 files:[
                     'less/**/*.less',
-                    'js/slider.js'
+                    'js/*.js'
                 ],
                 tasks:['dist.watch','www.watch']
             },

@@ -3,9 +3,10 @@
  */
 'use strict';
 
-(function(callback){
-    "function" == typeof define && define.amd ? define(['jquery',callback]) : "object" == typeof exprots ? module.exports = callback : callback(jQuery);
-})(function($){
+//(function(callback){
+//    "function" == typeof define && define.amd ? define(['jquery'],callback) : "object" == typeof exprots ? module.exports = callback : callback(jQuery);
+//})
+(function($){
 
     var Slider = function(element,setting){
 
@@ -135,4 +136,4 @@
     }
 
     $.fn.Slider = Plugin;
-});
+})(jQuery);

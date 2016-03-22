@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Punk</title>
     <link rel="stylesheet" href="css/main.css">
-    <!--[if lt IE 8]>
+    <!--[if lt IE 9]>
         <script src="./lib/respond.min.js"></script>
     <![endif]-->
 </head>
@@ -33,30 +33,30 @@
 
     <div class="pk-f-l" style="margin-top: 42px;padding-top:15px; ">
         <div class="pk-col-sm-2">
-            <div class="pk-box np shadow">
+            <div class="pk-box np nb shadow">
                 <div class="pk-input-group l-i">
                     <input type="text" placeholder="搜索">
                     <span class="glyphicon glyphicon-search pk-input-add" aria-hidden="true"></span>
                 </div>
             </div>
             <ul class="pk-menu pk-box np shadow" style="margin-top: 11px;">
-                <li><a class="pk-menu-item active" href="/index.html#2">Canvas</a></li>
-                <li>
-                    <a class="pk-menu-item" href="/index.html#1">Ajax</a>
+                <li class="pk-menu-item"><a class="pk-menu-item-content"  href="/index.html#canvas">Canvas</a></li>
+                <li class="pk-menu-item" data-toggle="menu">
+                    <a href="/index.html#1" class="pk-menu-item-content">Ajax</a>
                     <ul class="pk-menu-cd">
-                        <li><a class="pk-menu-item" >Ajax 基础教程</a></li>
-                        <li><a class="pk-menu-item" >Ajax 发展史</a></li>
-                        <li><a class="pk-menu-item">Ajax 人文</a></li>
+                        <li class="pk-menu-item"><a class="pk-menu-item-content" >Ajax 基础教程</a></li>
+                        <li class="pk-menu-item" ><a class="pk-menu-item-content">Ajax 发展史</a></li>
+                        <li class="pk-menu-item"><a class="pk-menu-item-content">Ajax 人文</a></li>
                     </ul>
                 </li>
-                <li><a class="pk-menu-item" href="javascript:;">Map</a></li>
+                <li class="pk-menu-item"><a class="pk-menu-item-content" href="javascript:;">Map</a></li>
             </ul>
         </div>
         <div class="pk-col-sm-10">
             <div class="pk-nav-route pk-box shadow">
                 当前位置：Canvas / Canvas 基础
             </div>
-            <div class="pk-box shadow js-container" style="height: 500px;margin-top: 10px"></div>
+            <div class="pk-box shadow js-container" style="margin-top: 10px"></div>
         </div>
     </div>
     <script src="lib/require/require-2.1.20.min.js" data-main="js/index"></script>

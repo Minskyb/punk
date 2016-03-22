@@ -25,9 +25,9 @@ define([
     App.prototype.hashChanged = function(){
 
         this.moduleId = this.getModuleIdByUrl();
-        this.module = this.loadModule('./js/module'+this.moduleId,function(View){
+        this.module = this.loadModule('app/module/'+this.moduleId,function(View){
             this.module = new View({
-                wrapper:this.$wrapper
+                $wrapper:this.$wrapper
             });
             this.module.render();
         });
@@ -38,7 +38,7 @@ define([
         var hash = window.location.hash;
         if(!hash)
             return 404;
-        var arr = hash.match(/^\#\/(\w*|\d*)(\?{0}$|\?{1}.*$)/);
+        var arr = hash.match(/^\#(\S*)/);
         if(arr && arr[1])
             return arr[1];
         return 404;
@@ -48,16 +48,25 @@ define([
     App.prototype.loadModule = function(path,callback){
 
         var self = this;
-        requirejs([path],function(View){
-           callback && callback.call(this,View);
-        });
+        try{
+            requirejs([path],function(View){
+                callback && callback.call(self,View);
+            });
+        }catch (e){
+            console.log("Yep");
+        }
     }
 
     App.prototype.init = function(){
 
-        $(document).ready(function(){
+        this.hashChanged();
+        var self = this;
 
-            console.log('app init complete');
+        $(window).bind("hashchange",function(e){
+            self.hashChanged();
         });
+
     }
+
+    return App;
 })

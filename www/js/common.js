@@ -7,16 +7,17 @@ requirejs.config({
 
     baseUrl:'lib',
     paths:{
-        app:'../js',
 
+        app:'../js',
         jquery:'jquery/jquery.1.9.1',
         require:'require/require-2.1.20.min',
         text:'require/require.text-2.0.5.min',
         css:'require/require.css-0.1.8.min',
+        underscore:'underscore/underscore-min-1.8.3',
         punk:'punk/js/punk',
 
-        BView:'app/component/abstract.view',
-        BModule:'app//abstract.module'
+        BView:'../js/component/abstract.view',
+        BModule:'../js/module/abstract.module'
 
     },
     skim:{
