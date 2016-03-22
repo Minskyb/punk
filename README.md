@@ -1,4 +1,4 @@
 # punk
-a study project
+a simple Background management system,support load by module.
 
-it's a study project for myslef
+and it's also a study project for myslef
