@@ -5,13 +5,13 @@
 
 define([
     'jquery',
-    './config/router',
+    '../js/config/router',
     'extendJquery'
 ],function($,router){
 
     function App(options){
 
-        this.$wrapper = $(".js-container");
+        this.$wrapper = $(".js-c-container");
         this.moduleId = null;
 
         if(options)
@@ -66,7 +66,6 @@ define([
         $(window).bind("hashchange",function(e){
             self.hashChanged();
         });
-
     }
 
     return App;

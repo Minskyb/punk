@@ -17,7 +17,8 @@ requirejs.config({
         punk:'punk/js/punk',
 
         BView:'../js/component/abstract.view',
-        BModule:'../js/module/abstract.module'
+        BModule:'../js/module/abstract.module',
+        BApp:'../js/abstract.app'
 
     },
     skim:{

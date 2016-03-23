@@ -11,7 +11,7 @@
   // item
   .pk-menu-item{
 
-    .transition(~"0.3s");
+    .transition(~"height 0.3s,margin-left 0.3s");
 
     // content
     .pk-menu-item-content{
@@ -37,20 +37,38 @@
       margin:0;
       padding: 0;
       list-style: none;
-      display: none;
+      display: block;
       margin-left: 10px;
+
+      .pk-menu-item{
+        opacity: 0;
+        height: 0;
+        visibility: hidden;
+
+        .pk-menu-item-content{
+          margin-top: 0px;
+        }
+      }
     }
 
-    // item
+    // item hover an active
     &:hover,
     &.active{
       margin-left: 10px;
     }
 
-    // item
+    // item toggle
     &.toggle{
       .pk-menu-cd{
-        display: block;
+        .pk-menu-item{
+          opacity: 1;
+          height: 41px;
+          visibility: visible;
+
+          .pk-menu-item-content{
+            margin-top: 2px;
+          }
+        }
       }
     }
   }
