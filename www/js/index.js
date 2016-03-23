@@ -5,13 +5,35 @@
 
 requirejs(['./common','../lib/jquery/jquery.1.9.1'],function($){
 
-   requirejs(['jquery','BApp','punk'],function($,App){
+   requirejs([
+       'jquery',
+       'BApp',
+       'app/component/menu',
+       'extendJquery'
+   ],function($,App,Menu){
+
+
+       function Index(options){
+           App.call(this,options);
+       }
+
+       Index.prototype = $.PUNK.inheritPrototype(App.prototype);
+
+       Index.prototype.initProperty = function(){
+
+           App.prototype.initProperty.call(this);
+
+           this.views = {
+                ".js-c-menu":Menu
+           }
+       }
 
        $(document).ready(function(){
 
-           var app = new App({});
+           var index = new Index();
 
-           app.init();
+           index.init();
+           console.log("index init completed !");
        });
    })
 

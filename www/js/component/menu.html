@@ -1,0 +1,24 @@
+<ul class="pk-menu pk-box np shadow">
+    <%
+    var menu ,i=0,len;
+    for(len = menus.length ; i < len ; i++){
+        menu = menus[i]
+    %>
+    <li class="pk-menu-item" <% if (menu.id == 'javascript:;'){%>data-toggle="menu"<%}%>>
+        <a class="pk-menu-item-content"  href="<%=menu.id%>"><%=menu.name%></a>
+        <%
+        if(menu.child && menu.child.length > 0){
+            var cMenus = menu.child, cMenu,i=0,len;
+        %>
+        <ul class="pk-menu-cd">
+            <%
+            for( len = cMenus.length ; i < len ; i++){
+                cMenu = cMenus[i];
+            %>
+            <li class="pk-menu-item"><a class="pk-menu-item-content" href="<%=cMenu.id%>"><%=cMenu.name%></a></li>
+            <%}%>
+        </ul>
+        <%}%>
+    </li>
+    <%}%>
+</ul>

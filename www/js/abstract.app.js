@@ -11,11 +11,19 @@ define([
 
     function App(options){
 
-        this.$wrapper = $(".js-c-container");
-        this.moduleId = null;
+        this.initProperty();
 
         if(options)
             this.setOptions(options);
+    }
+
+    App.prototype.initProperty =function(){
+
+        this.$wrapper = $(".js-c-container");
+        this.moduleId = null;
+        this.module = undefined;
+        this.views = {};
+        this.components = [];
     }
 
     App.prototype.setOptions = function(options){
@@ -60,12 +68,31 @@ define([
 
     App.prototype.init = function(){
 
+        this.initComponents();
         this.hashChanged();
         var self = this;
 
         $(window).bind("hashchange",function(e){
             self.hashChanged();
         });
+    }
+
+    App.prototype.initComponents = function(){
+
+        var that = this;
+        $.each(this.views,function(K,V){
+
+            if(K && 'function'== typeof V){
+                that.components.push(new V({$wrapper:$(K)}));
+            }
+            else if(K && 'object' == typeof V){
+                var options = $.extend(true,{$wrapper:$(K)}, V.option);
+                that.components.push(new V.Func(options));
+            }
+            else {
+                console.error("initComponents 组件配置错误！");
+            }
+        })
     }
 
     return App;
