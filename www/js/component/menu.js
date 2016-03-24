@@ -16,7 +16,7 @@ define([
         BV.call(this,options);
     }
 
-    Menu.prototype = $.PUNK.inheritPrototype(BV.prototype);
+    Menu.prototype = $.PK.inheritPrototype(BV.prototype);
 
     Menu.prototype.initProperty = function(){
 

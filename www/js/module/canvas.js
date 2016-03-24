@@ -15,7 +15,7 @@ define([
         BM.call(this,options);
     }
 
-    Canvas.prototype = $.PUNK.inheritPrototype(BM.prototype);
+    Canvas.prototype = $.PK.inheritPrototype(BM.prototype);
 
     Canvas.prototype.initProperty = function(){
 

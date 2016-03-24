@@ -17,7 +17,7 @@ requirejs(['./common','../lib/jquery/jquery.1.9.1'],function($){
            App.call(this,options);
        }
 
-       Index.prototype = $.PUNK.inheritPrototype(App.prototype);
+       Index.prototype = $.PK.inheritPrototype(App.prototype);
 
        Index.prototype.initProperty = function(){
 

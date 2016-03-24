@@ -14,7 +14,7 @@ define([
         BV.call(this,options);
     }
 
-    BModule.prototype = $.PUNK.inheritPrototype(BV.prototype);
+    BModule.prototype = $.PK.inheritPrototype(BV.prototype);
 
     BModule.prototype.initProperty = function(){
 

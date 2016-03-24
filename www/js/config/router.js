@@ -7,6 +7,7 @@ define([],function(){
 
     return  {
         canvas:["canvas",""],
-        ajax:["ajax"]
+        ajax:["ajax"],
+        background:[]
     }
 });

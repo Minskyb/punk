@@ -14,7 +14,7 @@ define([
         BM.call(this,options);
     }
 
-    P404.prototype = $.PUNK.inheritPrototype(BM.prototype);
+    P404.prototype = $.PK.inheritPrototype(BM.prototype);
 
     P404.prototype.initProperty = function(){
 

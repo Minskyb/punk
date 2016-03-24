@@ -8,7 +8,7 @@
 })(function($){
 
     $.extend({
-        PUNK:{
+        PK:{
             inheritPrototype:function(prototype){
                 function tempClass(){};
                 tempClass.prototype = prototype;

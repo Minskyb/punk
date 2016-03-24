@@ -7,9 +7,21 @@ define([],function(){
 
     var menus = [
         {
-            name:"Canvas",
-            id:'#canvas',
-            keys:"canvas,draw"
+            name:"边框+背景",
+            id:'javascript:;',
+            keys:"canvas,draw",
+            child:[
+                {
+                    name:"background",
+                    id:"#background",
+                    key:"background,linear-gradient,radial-gradient"
+                },
+                {
+                    name:"border-radius",
+                    id:"#border-radius",
+                    key:"border-radius,border"
+                }
+            ]
         },
         {
             name:"Ajax",
