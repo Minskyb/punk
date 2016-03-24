@@ -7,17 +7,18 @@
     <li class="pk-menu-item" <% if (menu.id == 'javascript:;'){%>data-toggle="menu"<%}%>>
         <a class="pk-menu-item-content"  href="<%=menu.id%>"><%=menu.name%></a>
         <%
-        if(menu.child && menu.child.length > 0){
-            var cMenus = menu.child, cMenu,i=0,len;
+        var children = menu.child
+        if(children && children.length > 0){
         %>
-        <ul class="pk-menu-cd">
-            <%
-            for( len = cMenus.length ; i < len ; i++){
-                cMenu = cMenus[i];
-            %>
-            <li class="pk-menu-item"><a class="pk-menu-item-content" href="<%=cMenu.id%>"><%=cMenu.name%></a></li>
-            <%}%>
-        </ul>
+        <div class="js-child-<%=i%>">
+            <script>
+                $.PUNK.interatorTemplate({
+                    template: 'text!app/component/menu_child.html',
+                    data:<%=JSON.stringify({menus:children})%>,
+                    index:".js-child-<%=i%>"
+                });
+            </script>
+        </div>
         <%}%>
     </li>
     <%}%>

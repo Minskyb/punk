@@ -18,7 +18,7 @@ define([],function(){
             child:[
                 {
                     name:"Ajax 基础教程",
-                    id:'#canvas_base',
+                    id:'#canvas',
                     keys:"canvas,基础"
                 },
                 {

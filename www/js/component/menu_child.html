@@ -1,0 +1,9 @@
+<ul class="pk-menu-cd">
+<%
+    var i,len = menus.length,menu=null;
+    for( i = 0 ;i < len ; i ++){
+        menu = menus[i]
+%>
+    <li class="pk-menu-item" <% if (menu.id == 'javascript:;'){%>data-toggle="menu"<%}%>><a class="pk-menu-item-content" href="<%=menu.id%>"><%=menu.name%> </a></li>
+<%}%>
+</ul>
