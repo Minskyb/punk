@@ -64,10 +64,10 @@ define(['underscore','jquery'],function(_,$){
     /* 界面呈现 */
     BView.prototype.render = function(){
 
-//        if(!this.$element){
-//            this.renderImmediately = true;
-//            return;
-//        }
+        if(!this.$element){
+            console.error("this.$element 解析失败！");
+            return;
+        }
 
         this.$wrapper.empty();
         this.$wrapper.append(this.$element);

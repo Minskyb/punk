@@ -8,6 +8,8 @@ define([],function(){
     return  {
         canvas:["canvas",""],
         ajax:["ajax"],
-        background:[]
+        background:[],
+        "limit-words-number":"",
+        "slider":""
     }
 });

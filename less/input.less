@@ -1,13 +1,22 @@
-input{
+input,textarea{
   .box(10px,15px,@base-border-radius,@base-border-color);
+  font-size: @font-size-sm-h5;
   width: 100%;
+  font-family: inherit;
+
+  &:focus{
+    outline: none;
+    box-shadow: 0 0 2px 2px rgba(106, 177, 236, 0.4);
+    border:1px solid rgba(127, 187, 239, 0.6);
+
+  }
 }
 
 .pk-input-group{
 
   position: relative;
 
-  &.l-i{
+  &.pk-left-center-inner{
 
     input{
       padding-left: 35px;
@@ -20,6 +29,20 @@ input{
       height: 15px;
       top: 10px;
       left: 15px;
+      color: @input-add-color;
+    }
+  }
+
+  &.pk-right-bottom-inner{
+
+    textarea{
+      padding-bottom: 26px;
+    }
+
+    .pk-input-add{
+      position: absolute;
+      right: 28px;
+      bottom: 6px;
       color: @input-add-color;
     }
   }

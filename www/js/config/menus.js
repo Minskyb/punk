@@ -24,32 +24,23 @@ define([],function(){
             ]
         },
         {
-            name:"Ajax",
-            id:'javascript:;',
-            keys:"Ajax,Ajax",
+            name:"常用插件",
+            id:"javascript:;",
+            keys:'插件',
             child:[
                 {
-                    name:"Ajax 基础教程",
-                    id:'#canvas',
-                    keys:"canvas,基础"
+                    name:"字数限制",
+                    id:"#limit-words-number",
+                    key:""
                 },
                 {
-                    name:"Ajax 发展史",
-                    id:'#canvas_base',
-                    keys:"canvas,基础"
-                },
-                {
-                    name:"Ajax 人文",
-                    id:'#canvas_base',
-                    keys:"canvas,基础"
+                    name:"Slider",
+                    id:"#slider",
+                    key:"slider"
                 }
             ]
-        },
-        {
-            name: "Map",
-            id: '#canvas',
-            keys: "canvas,draw"
         }
+
     ];
 
     return menus;

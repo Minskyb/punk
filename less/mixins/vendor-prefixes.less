@@ -32,6 +32,14 @@
   transform-origin: @str;
 }
 
+.translate(@X;@Y){
+  -webkit-transform:  -webkit-translate(@X,@Y);
+  -ms-transform:  -ms-translate(@X,@Y);
+  -moz-transform:   -moz-translate(@X,@Y);
+  -o-transform:   -o-translate(@X,@Y);
+  transform:  translate(@X,@Y);
+}
+
 .opacity(@opacity){
   opacity: @opacity;
   @opacity-ie:(@opacity*100);

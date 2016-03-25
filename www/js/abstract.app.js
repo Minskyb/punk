@@ -40,7 +40,6 @@ define([
             this.module = new View({
                 $wrapper:this.$wrapper
             });
-            this.module.render();
         });
     }
 

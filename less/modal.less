@@ -1,0 +1,64 @@
+.fade{
+  .opacity(0);
+  .transition(~"opacity 0.15s linear");
+  &.in{
+    .opacity(1);
+  }
+}
+
+.modal-open{
+  overflow: hidden;
+  padding-right: 17px;
+}
+
+.modal{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index:1050;
+  &> .modal-dialog{
+    display: block;
+    width: 640px;
+    margin: 30px auto;
+    background-color: #ffffff;
+
+    border-radius: 6px;
+  }
+  &.fade>.modal-dialog{
+    .translate(0,-25%);
+    .transition-transform(~"0.3s ease-out");
+  }
+  &.in>.modal-dialog{
+    .translate(0,0);
+    box-shadow:0 5px 15px @modal-dialog-shadow;
+  }
+}
+
+.modal-backdrop{
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: @modal-backdorp-color;
+  z-index: -1;
+  &.fade{
+    .opacity(0);
+  }
+  &.in{
+    display: block;
+    z-index:1000;
+    .opacity(0.5);
+  }
+}
+
+.modal-measure-scrollbar{
+  display: block;
+  width: 1px;
+  height: 200%;
+  overflow: scroll;
+}

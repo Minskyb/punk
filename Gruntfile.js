@@ -19,8 +19,7 @@ module.exports = function(grunt){
             },
             dist:{
                 src:[
-                    'js/slider.js',
-                    'js/menu.js'
+                    'js/**/*.js',
                 ],
                 dest:'dist/js/<%=pkg.name%>.js'
             },

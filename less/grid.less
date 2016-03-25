@@ -13,23 +13,38 @@
 .make-grid-columns();
 
 .make-grid(xs);
-
+.pk-container{
+  width: 100%;
+  margin: 0 auto;
+}
 // large screen
 // width offset for the current screen width
 @media ( min-width: @screen-sm-width ) {
   .make-grid(sm);
+  .pk-container{
+    width: @screen-sm-width - 30;
+    margin: 0 auto;
+  }
 }
 
 // middle screen
 // width offset for the current screen width
 @media ( min-width: @screen-md-width ) {
   .make-grid(md);
+  .pk-container{
+    width: @screen-md-width - 30;
+    margin: 0 auto;
+  }
 }
 
 // large screen
 // width offset for the current screen width
 @media ( min-width: @screen-lg-width ) {
   .make-grid(lg);
+  .pk-container{
+    width: @screen-lg-width - 30;
+    margin: 0 auto;
+  }
 }
 
 .pk-f-r>*{
@@ -37,4 +52,9 @@
 }
 .pk-f-l>*{
   float:left;
+}
+
+.np{
+  padding-left: 0;
+  padding-right: 0;
 }

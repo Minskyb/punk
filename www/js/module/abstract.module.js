@@ -47,17 +47,10 @@ define([
 
     BModule.prototype.render = function(){
 
-        if(!this.$element){
-            this.renderImmediately = true;
-            return;
-        }
 
         BV.prototype.render.call(this);
 
         this.initComponents();
-//        $.each(this.components,function(K,V){
-//            V.render();
-//        });
     }
 
     return BModule;
