@@ -8,7 +8,7 @@
 
         this.$body = $(document.body);
         this.$element = $(element);
-        this.$dialog = this.$element.find(".modal-dialog");
+        this.$dialog = this.$element.find(".pk-modal-dialog");
         this.$backdrop           = null;
         this.isShown             = null;
         //this.ignoreBackdropClick = false;
@@ -31,10 +31,11 @@
         if(this.isShown) return;
         this.isShown = true;
 
-        //var paddingRight = this.measureScrollbar();
-        // 如何屏蔽 body 的滚动条，并且在需要的时候给 modal 添加滚动条
-        //this.resetScrollbar();
-        //this.$body.addClass('modal-open');
+        var scrollBarWidth = this.measureScrollbar();
+        //屏蔽 body 的滚动条，并且在需要的时候给 modal 添加滚动条
+        this.$body.addClass('pk-modal-open');
+        this.hideScrollbar(scrollBarWidth);
+
 
 
         /* 点击 × 符号 */
@@ -60,7 +61,8 @@
             .off('dismiss.bt.modal');
         this.isShown = false;
         this.$element.hide();
-        this.$body.removeClass('modal-open');
+        this.$body.removeClass('pk-modal-open');
+        this.resetScrollbar();
         this.removeBackdrop();
     }
 
@@ -75,7 +77,7 @@
 
         if(!this.isShown) return;
         this.$backdrop = $(document.createElement('div'));
-        this.$backdrop.addClass('modal-backdrop fade')
+        this.$backdrop.addClass('pk-modal-backdrop fade')
             .appendTo(this.$body);
 
 
@@ -88,7 +90,7 @@
         });
 
         this.$backdrop.addClass('in');
-        this.$element.show(100).addClass('in');
+        this.$element.show(0).addClass('in');
     }
 
     Modal.prototype.removeBackdrop = function(){
@@ -97,18 +99,21 @@
         //this.ignoreBackdropClick = false;
     }
 
+    Modal.prototype.hideScrollbar = function(scrollBarWidth){
+
+        this.originBodyPaddingRight = parseInt((this.$body.css('padding-right') || 0),10);
+        this.$body.css('padding-right',this.originBodyPaddingRight+scrollBarWidth);
+    }
+
     Modal.prototype.resetScrollbar = function(){
 
-        var bodyPad = parseInt((this.$body.css('padding-right') || 0),10);
-        var originalBodyPad = document.body.style.paddingRight || "";
-
-        console.log( );
+        this.$body.css('padding-right',this.originBodyPaddingRight);
     }
 
     Modal.prototype.measureScrollbar = function(){
 
         var scrollDiv = document.createElement('div');
-        scrollDiv.className = 'modal-measure-scrollbar';
+        scrollDiv.className = 'pk-modal-measure-scrollbar';
         this.$body.append(scrollDiv);
         var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
         this.$body[0].removeChild(scrollDiv);

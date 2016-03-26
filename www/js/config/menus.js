@@ -37,6 +37,11 @@ define([],function(){
                     name:"Slider",
                     id:"#slider",
                     key:"slider"
+                },
+                {
+                    name:"Modal",
+                    id:"#modal",
+                    key:"modal,弹出框"
                 }
             ]
         }

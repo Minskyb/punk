@@ -1480,27 +1480,27 @@ textarea:focus {
   opacity: 1;
   filter: alpha(opacity=100);
 }
-.modal-open {
-  overflow: hidden;
-  padding-right: 17px;
+.pk-modal-open {
+  overflow-y: hidden !important;
 }
-.modal {
+.pk-modal {
   display: none;
   position: fixed;
+  overflow-y: auto;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 1050;
 }
-.modal > .modal-dialog {
+.pk-modal > .pk-modal-dialog {
   display: block;
-  width: 640px;
+  width: 60%;
   margin: 30px auto;
   background-color: #ffffff;
   border-radius: 6px;
 }
-.modal.fade > .modal-dialog {
+.pk-modal.fade > .pk-modal-dialog {
   -webkit-transform: -webkit-translate(0, -25%);
   -ms-transform: -ms-translate(0, -25%);
   -moz-transform: -moz-translate(0, -25%);
@@ -1512,7 +1512,7 @@ textarea:focus {
   -o-transition: -o-transform 0.3s ease-out;
   transition: transform 0.3s ease-out;
 }
-.modal.in > .modal-dialog {
+.pk-modal.fade.in > .pk-modal-dialog {
   -webkit-transform: -webkit-translate(0, 0);
   -ms-transform: -ms-translate(0, 0);
   -moz-transform: -moz-translate(0, 0);
@@ -1520,7 +1520,7 @@ textarea:focus {
   transform: translate(0, 0);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
-.modal-backdrop {
+.pk-modal-backdrop {
   display: block;
   position: fixed;
   top: 0;
@@ -1530,20 +1530,69 @@ textarea:focus {
   background-color: black;
   z-index: -1;
 }
-.modal-backdrop.fade {
+.pk-modal-backdrop.fade {
   opacity: 0;
   filter: alpha(opacity=0);
 }
-.modal-backdrop.in {
+.pk-modal-backdrop.in {
   display: block;
   z-index: 1000;
   opacity: 0.5;
   filter: alpha(opacity=50);
 }
-.modal-measure-scrollbar {
+.pk-modal-measure-scrollbar {
   display: block;
   width: 1px;
   height: 200%;
   overflow: scroll;
+}
+.pk-animation-box {
+  position: relative;
+}
+.pk-animation-box .pk-animation {
+  position: absolute;
+}
+.pk-btn {
+  border-radius: 4px;
+  text-decoration: none;
+  color: #333;
+  padding: 10px 15px;
+}
+.pk-btn.pk-btn-primary {
+  background-color: #0024ef;
+  color: #ffffff;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+}
+h6 {
+  font-size: 12px;
+}
+h5 {
+  font-size: 14px;
+}
+h4 {
+  font-size: 18px;
+}
+h3 {
+  font-size: 24px;
+}
+h2 {
+  font-size: 30px;
+}
+h1 {
+  font-size: 36px;
+}
+p {
+  text-indent: 2em;
+}
+h1 {
+  padding: 20px 0 9px 0;
 }
 /*# sourceMappingURL=punk.css.map */

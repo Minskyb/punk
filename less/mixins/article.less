@@ -1,0 +1,14 @@
+
+.make-header(@class){
+  .loop-header-size(@class,6);
+}
+
+.loop-header-size(@class,@index) when ( @index > 0){
+
+  @size:"font-size-@{class}-h@{index}";
+
+  h@{index}{
+    font-size: @@size;
+  }
+  .loop-header-size(@class,(@index - 1));
+}

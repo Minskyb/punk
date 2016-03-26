@@ -10,6 +10,7 @@ define([],function(){
         ajax:["ajax"],
         background:[],
         "limit-words-number":"",
-        "slider":""
+        "slider":"",
+        "modal":"modal,弹出框"
     }
 });
