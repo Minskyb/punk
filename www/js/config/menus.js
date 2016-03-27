@@ -42,6 +42,11 @@ define([],function(){
                     name:"Modal",
                     id:"#modal",
                     key:"modal,弹出框"
+                },
+                {
+                    name:"Abox",
+                    id:"#abox",
+                    key:"Abox,自动缩放"
                 }
             ]
         }

@@ -25,7 +25,7 @@
     Modal.prototype.show = function(_relatedTarget){
         var self = this;
 
-        var e = $.Event('show.bt.modal',{relatedTarget:_relatedTarget});
+        var e = $.Event('show.pk.modal',{relatedTarget:_relatedTarget});
         this.$element.trigger(e);
 
         if(this.isShown) return;
@@ -55,10 +55,10 @@
 
         this.$element
             .removeClass('in')
-            .off('.dismiss.bt.modal')
+            .off('.dismiss.pk.modal')
         this.$backdrop
             .removeClass('in')
-            .off('dismiss.bt.modal');
+            .off('dismiss.pk.modal');
         this.isShown = false;
         this.$element.hide();
         this.$body.removeClass('pk-modal-open');
@@ -81,7 +81,7 @@
             .appendTo(this.$body);
 
 
-        this.$element.on('click.dismiss.bt.modal',function(e){
+        this.$element.on('click.dismiss.pk.modal',function(e){
            if($(e.target).is(self.$element[0]) ) self.hide();
         });
         /*兼容IE8 浏览器，通过上面的方法 IE8只能监听到 content 内部的点击事件，而无法监听到 content 以外的事件*/
@@ -126,8 +126,8 @@
 
         return this.each(function(){
             var $this = $(this);
-            var data = $this.data("bt.modal");
-            if(!data) $this.data("bt.modal",(data=new Modal(this,setting)));
+            var data = $this.data("pk.modal");
+            if(!data) $this.data("pk.modal",(data=new Modal(this,setting)));
 
             // execute the specified function
             if(typeof setting == 'string') data[setting](_relatedTarget);
@@ -147,7 +147,7 @@
         var href    = $this.attr('href')
         var $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) // strip for ie7
 
-        var option = $target.data('bt.modal') ? 'toggle': $.extend({show:true},$target.data(),$this.data());// $target.data() 返回 $target 元素上所有通过 data 保存的数据
+        var option = $target.data('pk.modal') ? 'toggle': $.extend({show:true},$target.data(),$this.data());// $target.data() 返回 $target 元素上所有通过 data 保存的数据
 
         if ($this.is('a')) e.preventDefault();
 

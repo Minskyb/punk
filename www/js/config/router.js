@@ -11,6 +11,7 @@ define([],function(){
         background:[],
         "limit-words-number":"",
         "slider":"",
-        "modal":"modal,弹出框"
+        "modal":"modal,弹出框",
+        "abox":"abox,自动缩放"
     }
 });

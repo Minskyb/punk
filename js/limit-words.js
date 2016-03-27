@@ -42,8 +42,8 @@
             var data = $this.data("limit-words");
             if(!data)
             $this.data("limit-words",(data = new LimitWords(this,setting)));
-            else
-                data.addEvent();
+//            else
+//                data.addEvent();
         });
     }
 

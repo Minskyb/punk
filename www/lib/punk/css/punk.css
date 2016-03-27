@@ -212,11 +212,11 @@ body {
     margin-left: 8.33333333%;
   }
   .pk-container {
-    width: 738px;
+    width: 668px;
     margin: 0 auto;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   .pk-col-md-12 {
     width: 100%;
     padding: 0 15px;
@@ -302,11 +302,11 @@ body {
     margin-left: 8.33333333%;
   }
   .pk-container {
-    width: 962px;
+    width: 824px;
     margin: 0 auto;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1280px) {
   .pk-col-lg-12 {
     width: 100%;
     padding: 0 15px;
@@ -392,7 +392,7 @@ body {
     margin-left: 8.33333333%;
   }
   .pk-container {
-    width: 1170px;
+    width: 1080px;
     margin: 0 auto;
   }
 }
@@ -403,8 +403,8 @@ body {
   float: left;
 }
 .np {
-  padding-left: 0;
-  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 .pk-slider {
   display: block;
@@ -1548,6 +1548,7 @@ textarea:focus {
 }
 .pk-animation-box {
   position: relative;
+  width: 100%;
 }
 .pk-animation-box .pk-animation {
   position: absolute;
