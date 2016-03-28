@@ -5,11 +5,11 @@
 
 (function($){
 
-    $(document).on("click",function(e){
+    $(document).on("click",'[class*="pk-menu-item-content"]',function(e){
 
         var $target = $(e.target);
         // if the click is trigger by pk-menu-item-content then continue
-        if(/pk-menu-item-content/.test($target[0].className)){
+        //if(/pk-menu-item-content/.test($target[0].className)){
 
             $target.parent().toggleClass("toggle");
             // ignore the click when which triggered by toggle menu
@@ -26,7 +26,7 @@
             var $parent = $target.parents(".pk-menu-item");
             if($parent)
                 $parent.children(".pk-menu-item-content").addClass("active");
-        }
+        //}
 
     });
 })(jQuery);
