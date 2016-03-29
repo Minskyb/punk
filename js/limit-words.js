@@ -1,5 +1,6 @@
 /**
  * Created by ASUS on 2016/3/25.
+ * LimitWords
  */
 'use strict';
 
@@ -17,7 +18,15 @@
     }
 
     LimitWords.prototype.addEvent = function(){
+
         this.$element.on("keyup", $.proxy(this.chargeWordsNumber,this));
+
+        // 当 textarea 失去焦点时，移除 keyup 事件监听
+        var self = this;
+        this.$element.one("focusout",function(){
+            //self.$element.off("keyup","**");  // 这种方法无法解除 keyup 事件监听
+            self.$element.off("keyup",$.proxy(self.chargeWordsNumber,self));
+        })
     }
 
     LimitWords.prototype.chargeWordsNumber = function(e){
@@ -42,13 +51,15 @@
             var data = $this.data("limit-words");
             if(!data)
             $this.data("limit-words",(data = new LimitWords(this,setting)));
-//            else
-//                data.addEvent();
+            else
+                data.addEvent();
         });
     }
 
     $.fn.LimitWords = Plugin;
 
+    // 自动执行，可以省略让用户手动添加，因为当插件逐渐变多，会导致自动添加的监听事件过多
+    // 从而产生不必要的内存浪费。
     $(document).ready(function(){
         $(document).on("click",'[data-toggle="limit-words"]',function(e){
             var $target = $(e.target);

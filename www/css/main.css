@@ -1628,4 +1628,140 @@ p {
 h1 {
   padding: 20px 0 9px 0;
 }
+.pk-imgclip {
+  position: relative;
+  border: 3px dashed yellow;
+  background-color: #C1C1C1;
+}
+.pk-imgclip-mask {
+  display: block;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  z-index: 20;
+  cursor: move;
+  left: 200px;
+  top: 200px;
+}
+.pk-imgclip-chosen {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.pk-imgclip-chosen .pk-imgclip-chosen-img {
+  position: absolute;
+  left: -200px;
+  top: -200px;
+}
+.pk-imgclip-chosen .pk-chosen-border {
+  position: absolute;
+  background: #fff url('http://pr.bdimg.com/static/princess/img/Jcrop_d65babb3.gif') repeat;
+}
+.pk-imgclip-chosen .pk-chosen-border.up {
+  width: 100%;
+  height: 1px;
+  top: 0;
+}
+.pk-imgclip-chosen .pk-chosen-border.down {
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+}
+.pk-imgclip-chosen .pk-chosen-border.left {
+  height: 100%;
+  width: 1px;
+  left: 0;
+}
+.pk-imgclip-chosen .pk-chosen-border.right {
+  height: 100%;
+  width: 1px;
+  right: 0;
+}
+.pk-imgclip-handle {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+.pk-imgclip-handle .pk-handle-border {
+  position: absolute;
+  background-color: transparent;
+}
+.pk-imgclip-handle .pk-handle-border.up {
+  height: 4.5px;
+  width: 100%;
+  top: 0px;
+  cursor: n-resize;
+}
+.pk-imgclip-handle .pk-handle-border.down {
+  height: 4.5px;
+  width: 100%;
+  bottom: 0px;
+  cursor: s-resize;
+}
+.pk-imgclip-handle .pk-handle-border.left {
+  height: 100%;
+  width: 4.5px;
+  left: 0px;
+  cursor: w-resize;
+}
+.pk-imgclip-handle .pk-handle-border.right {
+  height: 100%;
+  width: 4.5px;
+  right: 0px;
+  cursor: e-resize;
+}
+.pk-imgclip-handle .pk-handle-box {
+  position: absolute;
+  height: 9px;
+  width: 9px;
+  border: 1px solid #B3B3B3;
+}
+.pk-imgclip-handle .pk-handle-box.top-center {
+  top: -4.5px;
+  left: 50%;
+  margin-left: -4.5px;
+  cursor: n-resize;
+}
+.pk-imgclip-handle .pk-handle-box.top-left {
+  top: -4.5px;
+  left: -4.5px;
+  cursor: nw-resize;
+}
+.pk-imgclip-handle .pk-handle-box.top-right {
+  top: -4.5px;
+  right: -4.5px;
+  cursor: ne-resize;
+}
+.pk-imgclip-handle .pk-handle-box.bottom-center {
+  bottom: -4.5px;
+  left: 50%;
+  margin-left: -4.5px;
+  cursor: s-resize;
+}
+.pk-imgclip-handle .pk-handle-box.bottom-left {
+  bottom: -4.5px;
+  left: -4.5px;
+  cursor: sw-resize;
+}
+.pk-imgclip-handle .pk-handle-box.bottom-right {
+  bottom: -4.5px;
+  right: -4.5px;
+  cursor: se-resize;
+}
+.pk-imgclip-handle .pk-handle-box.left-middle {
+  top: 50%;
+  left: -4.5px;
+  cursor: w-resize;
+}
+.pk-imgclip-handle .pk-handle-box.right-middle {
+  top: 50%;
+  right: -4.5px;
+  cursor: e-resize;
+}
+.pk-imgclip-origin {
+  opacity: 0.6;
+}
 /*# sourceMappingURL=punk.css.map */

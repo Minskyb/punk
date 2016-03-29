@@ -47,6 +47,11 @@ define([],function(){
                     name:"Abox",
                     id:"#abox",
                     key:"Abox,自动缩放"
+                },
+                {
+                    name:"ImgClip",
+                    id:"#imgClip",
+                    key:"imgClip,图片剪辑"
                 }
             ]
         }

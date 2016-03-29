@@ -23,6 +23,18 @@ define([
         BM.prototype.initProperty.call(this);
 
         this.template = template;
+
+    }
+
+    LWNumber.prototype.render = function(){
+
+        BM.prototype.render.call(this);
+
+        //$(function(){
+        //    $(".js-textarea").focusout(function(){
+        //        console.log("I'm out");
+        //    });
+        //})
     }
 
     return LWNumber;

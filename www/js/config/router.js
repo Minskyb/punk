@@ -12,6 +12,7 @@ define([],function(){
         "limit-words-number":"",
         "slider":"",
         "modal":"modal,弹出框",
-        "abox":"abox,自动缩放"
+        "abox":"abox,自动缩放",
+        "imgClip":"imgClip,图片剪辑"
     }
 });

@@ -1,5 +1,6 @@
 /**
  * Created by Administrator on 2016/3/27.
+ * Abox  auto height box
  */
 'use strict';
 
@@ -43,4 +44,4 @@
 //        $("")
 //    });
 
-})(jQuery)
+})(jQuery);
