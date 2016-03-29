@@ -46,6 +46,87 @@
 
 })(jQuery);
 /**
+ * Created by ASUS on 2016/3/28.
+ */
+'use strict';
+
+(function(){
+    function DExcute(){
+
+    }
+
+    function Plugin(){
+
+    }
+
+    $.fn.DExcute = Plugin;
+
+})(jQuery);
+/**
+ * Created by ASUS on 2016/3/29.
+ */
+'use strict';
+
+(function($){
+    function ImgClip(element,setting){
+
+        this.$element = $(element);
+        this.setting = $.extend(true,ImgClip.defaults,setting ? setting : {});
+        this.loadComponent();
+        this.loadImage();
+    }
+
+    ImgClip.defaults = {
+        chosenWidth:100   // 被选区的初始宽度，
+        ,chosenHeight:100  // 被选区的初始高度，
+        ,handle:true   // 选择区域大小是否可变
+    }
+
+    ImgClip.prototype.loadComponent = function(){
+
+        var mask = '<div class="pk-imgclip-mask"><div class="pk-imgclip-chosen"><img class="pk-imgclip-chosen-img"><div class="pk-chosen-border up"></div><div class="pk-chosen-border down"></div><div class="pk-chosen-border left"></div><div class="pk-chosen-border right"></div></div><div class="pk-imgclip-handle"><div class="pk-handle-border up"></div><div class="pk-handle-border down"></div><div class="pk-handle-border left"></div><div class="pk-handle-border right"></div><div class="pk-handle-box top-center"></div><div class="pk-handle-box top-left"></div><div class="pk-handle-box top-right"></div><div class="pk-handle-box bottom-center"></div><div class="pk-handle-box bottom-left"></div><div class="pk-handle-box bottom-right"></div><div class="pk-handle-box left-middle"></div><div class="pk-handle-box right-middle"></div></div></div>'
+
+        var origin = '<img class="pk-imgclip-origin">';
+
+        this.$mask =$(mask);
+        this.$origin = $(origin);
+
+        this.$element.append(this.$mask);
+        this.$element.append(this.$origin);
+    }
+
+    ImgClip.prototype.loadImage = function(){
+
+        var image = new Image();
+        image.src =  this.setting.originImg;
+        image.onload = function(){
+            console.log("yep");
+        };
+
+    }
+
+    ImgClip.prototype.addEvent =function(){
+
+
+    }
+
+    function Plugin(setting){
+
+        return this.each(function(){
+            var $this = $(this);
+            var data = $this.data("pk.imgClip");
+
+            if(!data)
+            $this.data("pk.imgClip",(data = new ImgClip(this,setting)));
+            else
+            data.addEvent();
+        });
+    }
+
+    $.fn.ImgClip = Plugin;
+
+})(jQuery);
+/**
  * Created by ASUS on 2016/3/25.
  * LimitWords
  */
@@ -65,7 +146,15 @@
     }
 
     LimitWords.prototype.addEvent = function(){
+
         this.$element.on("keyup", $.proxy(this.chargeWordsNumber,this));
+
+        // 当 textarea 失去焦点时，移除 keyup 事件监听
+        var self = this;
+        this.$element.one("focusout",function(){
+            //self.$element.off("keyup","**");  // 这种方法无法解除 keyup 事件监听
+            self.$element.off("keyup",$.proxy(this.chargeWordsNumber,this));
+        })
     }
 
     LimitWords.prototype.chargeWordsNumber = function(e){
@@ -90,13 +179,15 @@
             var data = $this.data("limit-words");
             if(!data)
             $this.data("limit-words",(data = new LimitWords(this,setting)));
-//            else
-//                data.addEvent();
+            else
+                data.addEvent();
         });
     }
 
     $.fn.LimitWords = Plugin;
 
+    // 自动执行，可以省略让用户手动添加，因为当插件逐渐变多，会导致自动添加的监听事件过多
+    // 从而产生不必要的内存浪费。
     $(document).ready(function(){
         $(document).on("click",'[data-toggle="limit-words"]',function(e){
             var $target = $(e.target);
