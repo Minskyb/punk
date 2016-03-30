@@ -90,17 +90,15 @@
 
     ImgClip.prototype.loadComponent = function(){
 
-        var mask = '<div class="pk-imgclip-mask"><div class="pk-imgclip-chosen"><img class="pk-imgclip-chosen-img"><div class="pk-chosen-border up"></div><div class="pk-chosen-border down"></div><div class="pk-chosen-border left"></div><div class="pk-chosen-border right"></div></div><div class="pk-imgclip-handle"><div class="pk-handle-border up"></div><div class="pk-handle-border down"></div><div class="pk-handle-border left"></div><div class="pk-handle-border right"></div><div class="pk-handle-box top-center"></div><div class="pk-handle-box top-left"></div><div class="pk-handle-box top-right"></div><div class="pk-handle-box bottom-center"></div><div class="pk-handle-box bottom-left"></div><div class="pk-handle-box bottom-right"></div><div class="pk-handle-box left-middle"></div><div class="pk-handle-box right-middle"></div></div></div>'
+        var mask = '<div class="pk-imgclip-mask"><div class="pk-imgclip-chosen"><img class="pk-imgclip-chosen-img"><div class="pk-chosen-border top"></div><div class="pk-chosen-border bottom"></div><div class="pk-chosen-border left"></div><div class="pk-chosen-border right"></div></div><div class="pk-imgclip-handle"><div class="pk-handle-border up"></div><div class="pk-handle-border down"></div><div class="pk-handle-border left"></div><div class="pk-handle-border right"></div><div class="pk-handle-box top-center"></div><div class="pk-handle-box top-left"></div><div class="pk-handle-box top-right"></div><div class="pk-handle-box bottom-center"></div><div class="pk-handle-box bottom-left"></div><div class="pk-handle-box bottom-right"></div><div class="pk-handle-box left-middle"></div><div class="pk-handle-box right-middle"></div></div></div>'
 
         var origin = '<img class="pk-imgclip-origin">';
 
         this.$mask =$(mask);
         this.$origin = $(origin);
 
-        this.$chosen = $(".pk-imgclip-chosen",this.$mask);
         this.$chosenImg = $(".pk-imgclip-chosen-img",this.$mask);
-        this.$handleBorder = $(".pk-handle-border",this.$mask);
-        this.$handleBox = $(".pk-handle-box",this.$mask);
+
         this.$element.append(this.$mask);
         this.$element.append(this.$origin);
 
@@ -115,12 +113,10 @@
 
     ImgClip.prototype.addEvent =function(){
 
-        this.$mask.on("mousedown",$.proxy(this.listenStartMove,this));
-        this.$handleBorder.on("mousedown",$.proxy(this.changeBox,this));
-        this.$handleBox.on();
+        this.$mask.on("mousedown",$.proxy(this.startMove,this));
     }
 
-    ImgClip.prototype.changeBox = function(e){
+    ImgClip.prototype.startMove = function(e){
 
         e.stopPropagation();
         e.preventDefault();
@@ -128,43 +124,32 @@
         this.clientX = e.clientX;
         this.clientY = e.clientY;
 
-        this.width = this.$mask.width();
-        this.height = this.$mask.height();
+        var handleType = this.getHandleType(e.target.classList.toString());
 
-        $(document).on("mousemove", $.proxy(this.BoxChanging,this));
-        var self = this;
-        $(document).one("mouseup",function(){
-            $(document).off("mousemove", $.proxy(self.BoxChanging,self));
-        });
+        // 变量初始化
+//        switch(handleType){
+//            块移动
+//            case 0:
+                this.originMaskTop = this.$mask[0].offsetTop;
+                this.originMaskLeft = this.$mask[0].offsetLeft;
+//                break;
+//            // border 上移
+//            case 1:
+//            // border 下移
+//            case 2:
+//            // border 左移
+//            case 3:
+//            // border 右移
+//            case 4:
+                this.originMaskWidth = this.$mask.width();
+                this.originMaskHeight = this.$mask.height();
+//                break;
+//        }
+
+        $(document).on("mousemove",{type:handleType}, $.proxy(this.handleMoving,this));
+        $(document).one("mouseup",{type:handleType},$.proxy(this.handleMoveEnd,this));
     }
 
-    ImgClip.prototype.BoxChanging = function(e){
-
-        var dX = e.clientX - this.clientX;
-        var dY = dX * this.height /this.width;
-
-        console.log(dX+","+dY);
-
-        this.$mask.width(this.width+dX);
-        this.$mask.height(this.width+dY);
-    }
-
-    ImgClip.prototype.listenStartMove = function(e){
-
-        e.stopPropagation();
-        e.preventDefault();
-
-        this.clientX = e.clientX;
-        this.clientY = e.clientY;
-        this.$mask.on("mousemove", $.proxy(this.handleMoving,this));
-        var self = this;
-        this.$mask.one("mouseup", function(){
-            self.$mask.off("mousemove", $.proxy(self.handleMoving,self));
-        });
-        this.$mask.one("mouseout", function(){
-            self.$mask.off("mousemove", $.proxy(self.handleMoving,self));
-        });
-    }
 
     ImgClip.prototype.handleMoving = function(e){
 
@@ -174,27 +159,107 @@
         var dX = e.clientX - this.clientX;
         var dY = e.clientY - this.clientY;
 
-        this.clientX = e.clientX;
-        this.clientY = e.clientY;
+        console.log("dX,dY:("+dX+","+dY+")");
 
-        console.log("in handleMoving:("+dX+","+dY+")");
-        this.changeChosenPosition(dX,dY);
+        switch(e.data.type){
+            case 0:
+                this.changeChosenPosition(dX,dY);
+                break;
+            case 1:
+                this.changeBoxSize('Y',dY,-1);
+                break;
+            case 2:
+                this.changeBoxSize('Y',dY,1);
+                break;
+            case 3:
+                this.changeBoxSize('X',dX,-1);
+                break;
+            case 4:
+                this.changeBoxSize('X',dX,1);
+                break;
+        }
     }
 
-   ImgClip.prototype.changeChosenPosition = function(dX,dY){
-       var originTop = parseFloat(this.$mask.css("top").match(/[0-9]+(?=px)/)[0])  || 0;
-       var originLeft = parseFloat(this.$mask.css("left").match(/[0-9]+(?=px)/)[0]) || 0;
+    ImgClip.prototype.handleMoveEnd = function(e){
 
-       console.log("in changeChosenPosition:("+originTop+","+originLeft+")");
-       this.$mask.css({
-           "top":originTop+dY+"px",
-           "left":originLeft+dX+"px"
-       });
-       this.$chosenImg.css({
-           "top":-originTop-dY+"px",
-           "left":-originLeft-dX+"px"
-       });
-   }
+        switch(e.data.type){
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
+
+        $(document).off("mousemove",$.proxy(this.handleMoving,this));
+    }
+
+    ImgClip.prototype.changeChosenPosition = function(dX,dY){
+
+        var originTop = this.originMaskTop || 0;
+        var originLeft = this.originMaskLeft || 0;
+
+        this.$mask.css({
+            "top":originTop+dY+"px",
+            "left":originLeft+dX+"px"
+        });
+        this.$chosenImg.css({
+            "top":-originTop-dY+"px",
+            "left":-originLeft-dX+"px"
+        });
+    }
+
+    ImgClip.prototype.changeBoxSize = function(direction,distance,pn){
+
+        console.log("width,height:("+this.originMaskWidth+","+this.originMaskHeight+")");
+
+        if(direction == 'X'){
+            var dY = distance * this.originMaskHeight / this.originMaskWidth;
+            this.$mask.width(this.originMaskWidth+distance*pn);
+            this.$mask.height(this.originMaskHeight+dY*pn);
+
+            if(pn<0){
+                this.changeChosenPosition(distance,dY);
+            }
+        }
+        else if(direction == 'Y'){
+            var dX = distance * this.originMaskWidth / this.originMaskHeight;
+            this.$mask.width(this.originMaskWidth+dX*pn);
+            this.$mask.height(this.originMaskHeight+distance*pn);
+
+            if(pn<0){
+                this.changeChosenPosition(dX,distance);
+            }
+        }
+    }
+
+    ImgClip.prototype.getHandleType = function(classStr){
+
+        if(/pk-imgclip-chosen-img/.test(classStr)){
+            console.log("chosen 移动");
+            return 0;
+        }
+        else if(/pk-handle-(border|box)\stop/.test(classStr)){
+            console.log("border 上移");
+            return 1;
+        }
+        else if(/pk-handle-(border|box)\sbottom/.test(classStr)){
+            console.log("border 下移");
+            return 2;
+        }
+        else if(/pk-handle-(border|box)\sleft/.test(classStr)){
+            console.log("border 左移");
+            return 3;
+        }
+        else if(/pk-handle-(border|box)\sright/.test(classStr)){
+            console.log("border 右移");
+            return 4;
+        }
+    }
 
     function Plugin(setting){
 

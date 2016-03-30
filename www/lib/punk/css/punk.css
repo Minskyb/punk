@@ -1627,12 +1627,12 @@ h1 {
   position: absolute;
   background: #fff url('http://pr.bdimg.com/static/princess/img/Jcrop_d65babb3.gif') repeat;
 }
-.pk-imgclip-chosen .pk-chosen-border.up {
+.pk-imgclip-chosen .pk-chosen-border.top {
   width: 100%;
   height: 1px;
   top: 0;
 }
-.pk-imgclip-chosen .pk-chosen-border.down {
+.pk-imgclip-chosen .pk-chosen-border.bottom {
   width: 100%;
   height: 1px;
   bottom: 0;
