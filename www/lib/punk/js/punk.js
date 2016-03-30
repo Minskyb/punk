@@ -99,7 +99,8 @@
 
         this.$chosen = $(".pk-imgclip-chosen",this.$mask);
         this.$chosenImg = $(".pk-imgclip-chosen-img",this.$mask);
-
+        this.$handleBorder = $(".pk-handle-border",this.$mask);
+        this.$handleBox = $(".pk-handle-box",this.$mask);
         this.$element.append(this.$mask);
         this.$element.append(this.$origin);
 
@@ -115,6 +116,37 @@
     ImgClip.prototype.addEvent =function(){
 
         this.$mask.on("mousedown",$.proxy(this.listenStartMove,this));
+        this.$handleBorder.on("mousedown",$.proxy(this.changeBox,this));
+        this.$handleBox.on();
+    }
+
+    ImgClip.prototype.changeBox = function(e){
+
+        e.stopPropagation();
+        e.preventDefault();
+
+        this.clientX = e.clientX;
+        this.clientY = e.clientY;
+
+        this.width = this.$mask.width();
+        this.height = this.$mask.height();
+
+        $(document).on("mousemove", $.proxy(this.BoxChanging,this));
+        var self = this;
+        $(document).one("mouseup",function(){
+            $(document).off("mousemove", $.proxy(self.BoxChanging,self));
+        });
+    }
+
+    ImgClip.prototype.BoxChanging = function(e){
+
+        var dX = e.clientX - this.clientX;
+        var dY = dX * this.height /this.width;
+
+        console.log(dX+","+dY);
+
+        this.$mask.width(this.width+dX);
+        this.$mask.height(this.width+dY);
     }
 
     ImgClip.prototype.listenStartMove = function(e){
@@ -129,9 +161,9 @@
         this.$mask.one("mouseup", function(){
             self.$mask.off("mousemove", $.proxy(self.handleMoving,self));
         });
-//        this.$mask.one("mouseout", function(){
-//            self.$mask.off("mousemove", $.proxy(self.handleMoving,self));
-//        });
+        this.$mask.one("mouseout", function(){
+            self.$mask.off("mousemove", $.proxy(self.handleMoving,self));
+        });
     }
 
     ImgClip.prototype.handleMoving = function(e){
