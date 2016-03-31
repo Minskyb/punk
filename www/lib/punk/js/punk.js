@@ -72,25 +72,43 @@
 
         this.$element = $(element);
 
-        this.initProperty(setting);
         this.loadComponent();
-        this.setImage();
+        this.initProperty(setting);
         this.addEvent();
     }
 
     ImgClip.defaults = {
-        chosenWidth:100   // 被选区的初始宽度，
-        ,chosenHeight:100  // 被选区的初始高度，
+         width:100   // 被选区的初始宽度，
+        ,height:100  // 被选区的初始高度，
         ,handle:true   // 选择区域大小是否可变
+        ,top:0
+        ,left:0
     }
 
     ImgClip.prototype.initProperty = function(setting){
         this.setting = $.extend(true,ImgClip.defaults,setting ? setting : {});
+
+        // 考虑 image.onload 事件兼容刷新处理，IE浏览器二次刷新好像不会触发 onload 事件。
+        this.$origin.attr("src",this.setting.img);
+        $(".pk-imgclip-chosen-img").attr("src",this.setting.img);
+
+        // 设置大小
+        this.$mask.width(this.setting.width);
+        this.$mask.height(this.setting.height);
+
+        // 设置位置
+        this.setPosition(this.setting.top,this.setting.left);
+
+        this.width = this.$mask.width();
+        this.height = this.$mask.height();
+        this.top = this.$mask[0].offsetTop;
+        this.left = this.$mask[0].offsetLeft;
+
     }
 
     ImgClip.prototype.loadComponent = function(){
 
-        var mask = '<div class="pk-imgclip-mask"><div class="pk-imgclip-chosen"><img class="pk-imgclip-chosen-img"><div class="pk-chosen-border top"></div><div class="pk-chosen-border bottom"></div><div class="pk-chosen-border left"></div><div class="pk-chosen-border right"></div></div><div class="pk-imgclip-handle"><div class="pk-handle-border up"></div><div class="pk-handle-border down"></div><div class="pk-handle-border left"></div><div class="pk-handle-border right"></div><div class="pk-handle-box top-center"></div><div class="pk-handle-box top-left"></div><div class="pk-handle-box top-right"></div><div class="pk-handle-box bottom-center"></div><div class="pk-handle-box bottom-left"></div><div class="pk-handle-box bottom-right"></div><div class="pk-handle-box left-middle"></div><div class="pk-handle-box right-middle"></div></div></div>'
+        var mask = '<div class="pk-imgclip-mask"><div class="pk-imgclip-chosen"><img class="pk-imgclip-chosen-img"><div class="pk-chosen-border top"></div><div class="pk-chosen-border bottom"></div><div class="pk-chosen-border left"></div><div class="pk-chosen-border right"></div></div><div class="pk-imgclip-handle"><div class="pk-handle-border top"></div><div class="pk-handle-border bottom"></div><div class="pk-handle-border left"></div><div class="pk-handle-border right"></div><div class="pk-handle-box top-center"></div><div class="pk-handle-box top-left"></div><div class="pk-handle-box top-right"></div><div class="pk-handle-box bottom-center"></div><div class="pk-handle-box bottom-left"></div><div class="pk-handle-box bottom-right"></div><div class="pk-handle-box left-middle"></div><div class="pk-handle-box right-middle"></div></div></div>'
 
         var origin = '<img class="pk-imgclip-origin">';
 
@@ -102,13 +120,6 @@
         this.$element.append(this.$mask);
         this.$element.append(this.$origin);
 
-    }
-
-    ImgClip.prototype.setImage = function(){
-
-        // 考虑 image.onload 事件兼容刷新处理，IE浏览器二次刷新好像不会触发 onload 事件。
-        this.$origin.attr("src",this.setting.originImg);
-        $(".pk-imgclip-chosen-img").attr("src",this.setting.originImg);
     }
 
     ImgClip.prototype.addEvent =function(){
@@ -126,30 +137,21 @@
 
         var handleType = this.getHandleType(e.target.classList.toString());
 
-        // 变量初始化
-//        switch(handleType){
-//            块移动
-//            case 0:
-                this.originMaskTop = this.$mask[0].offsetTop;
-                this.originMaskLeft = this.$mask[0].offsetLeft;
-//                break;
-//            // border 上移
-//            case 1:
-//            // border 下移
-//            case 2:
-//            // border 左移
-//            case 3:
-//            // border 右移
-//            case 4:
-                this.originMaskWidth = this.$mask.width();
-                this.originMaskHeight = this.$mask.height();
-//                break;
-//        }
-
         $(document).on("mousemove",{type:handleType}, $.proxy(this.handleMoving,this));
         $(document).one("mouseup",{type:handleType},$.proxy(this.handleMoveEnd,this));
     }
 
+    ImgClip.prototype.setPosition = function(top,left){
+
+        this.$mask.css({
+            "top":top+"px",
+            "left":left+"px"
+        });
+        this.$chosenImg.css({
+            "top":-top+"px",
+            "left":-left+"px"
+        });
+    }
 
     ImgClip.prototype.handleMoving = function(e){
 
@@ -182,59 +184,80 @@
 
     ImgClip.prototype.handleMoveEnd = function(e){
 
-        switch(e.data.type){
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-        }
+        this.width = this.$mask.width();
+        this.height = this.$mask.height();
+        this.top = this.$mask[0].offsetTop;
+        this.left = this.$mask[0].offsetLeft;
 
         $(document).off("mousemove",$.proxy(this.handleMoving,this));
     }
 
     ImgClip.prototype.changeChosenPosition = function(dX,dY){
 
-        var originTop = this.originMaskTop || 0;
-        var originLeft = this.originMaskLeft || 0;
+        var originTop = this.top || 0;
+        var originLeft = this.left || 0;
 
-        this.$mask.css({
-            "top":originTop+dY+"px",
-            "left":originLeft+dX+"px"
-        });
-        this.$chosenImg.css({
-            "top":-originTop-dY+"px",
-            "left":-originLeft-dX+"px"
-        });
+        console.log("top,left:"+(originTop+dY)+","+(originLeft+dX));
+       if(this.isMoveOut(dX,dY,false) || originTop+dY<0 || originLeft+dX<0 ) return;
+
+        this.setPosition(originTop+dY,originLeft+dX);
     }
 
     ImgClip.prototype.changeBoxSize = function(direction,distance,pn){
 
-        console.log("width,height:("+this.originMaskWidth+","+this.originMaskHeight+")");
+        console.log("width,height:("+this.width+","+this.height+")");
 
         if(direction == 'X'){
-            var dY = distance * this.originMaskHeight / this.originMaskWidth;
-            this.$mask.width(this.originMaskWidth+distance*pn);
-            this.$mask.height(this.originMaskHeight+dY*pn);
+            var dY = distance * this.height / this.width;
+
+            // 超出边界
+            if(this.isMoveOut(distance*pn,dY*pn, pn<0 ? true:false)) return;
+
+            this.$mask.width(this.width+distance*pn);
+            this.$mask.height(this.height+dY*pn);
 
             if(pn<0){
                 this.changeChosenPosition(distance,dY);
             }
         }
         else if(direction == 'Y'){
-            var dX = distance * this.originMaskWidth / this.originMaskHeight;
-            this.$mask.width(this.originMaskWidth+dX*pn);
-            this.$mask.height(this.originMaskHeight+distance*pn);
+            var dX = distance * this.width / this.height;
+
+            // 超出边界
+            if(this.isMoveOut(dX*pn,distance*pn, pn<0 ? true:false)) return;
+
+            this.$mask.width(this.width+dX*pn);
+            this.$mask.height(this.height+distance*pn);
 
             if(pn<0){
                 this.changeChosenPosition(dX,distance);
             }
         }
+    }
+
+    ImgClip.prototype.isMoveOut = function(dX,dY,ismoving){
+
+        var width = dX + this.width + this.left;
+        var height = dY + this.height + this.top;
+
+        console.log("width,height:"+width+","+height);
+
+
+        if(width > this.$chosenImg.width() || width <0 || height > this.$chosenImg.height() || height <0){
+            return true;
+        }
+        else if(ismoving){
+
+            var top = this.top - dY;
+            var left = this.left - dX;
+
+            console.log("top,left:"+top+","+left);
+
+            if(top<0 || left <0){
+                return true;
+            }
+        }
+        return false;
     }
 
     ImgClip.prototype.getHandleType = function(classStr){

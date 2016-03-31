@@ -1657,13 +1657,13 @@ h1 {
   position: absolute;
   background-color: transparent;
 }
-.pk-imgclip-handle .pk-handle-border.up {
+.pk-imgclip-handle .pk-handle-border.top {
   height: 4.5px;
   width: 100%;
   top: 0px;
   cursor: n-resize;
 }
-.pk-imgclip-handle .pk-handle-border.down {
+.pk-imgclip-handle .pk-handle-border.bottom {
   height: 4.5px;
   width: 100%;
   bottom: 0px;
