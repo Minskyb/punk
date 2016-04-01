@@ -54,14 +54,26 @@ define([],function(){
                     key:"imgClip,图片剪辑"
                 },
                 {
+                    name:"ImgUpload 上传图片",
+                    id:"#imgUpload",
+                    key:"imgUpload,图片预览,异步上传，上传进度"
+                }
+            ]
+        },
+        {
+            name:"常用功能",
+            id:'javascript:;',
+            key:'功能',
+            child:[
+                {
                     name:"ImgPreview 图片预览",
                     id:"#imgPreview",
                     key:"图片预览"
                 },
                 {
-                    name:"ImgUpload 上传图片",
-                    id:"#imgUpload",
-                    key:"imgUpload,图片预览,异步上传，上传进度"
+                    name:"canvas chart",
+                    id:"#canvasChart",
+                    key:"图标 canvas"
                 }
             ]
         }

@@ -15,6 +15,7 @@ define([],function(){
         "abox":"abox,自动缩放",
         "imgClip":"imgClip,图片剪辑",
         "imgPreview":"图片预览",
-        "imgUpload":"imgUpload,图片预览,异步上传，上传进度"
+        "imgUpload":"imgUpload,图片预览,异步上传，上传进度",
+        "canvasChart":"图标 canvas"
     }
 });
