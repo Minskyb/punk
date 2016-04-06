@@ -74,6 +74,11 @@ define([],function(){
                     name:"canvas chart",
                     id:"#canvasChart",
                     key:"图标 canvas"
+                },
+                {
+                    name:"reactjs ",
+                    id:"#reactjs",
+                    key:"reactjs"
                 }
             ]
         }

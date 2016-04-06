@@ -4,7 +4,7 @@
 'use strict';
 
 (function(callback){
-    "function" ==  typeof define && define.amd ? define(['jquery'],callback) : "object" == typeof exports ? module.exports = callback : callback(jQuery);
+    "function" ==  typeof define && define.amd ? requirejs(['jquery'],callback) : "object" == typeof exports ? module.exports = callback : callback(jQuery);
 })(function($){
 
     $.extend({
