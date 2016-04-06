@@ -4,7 +4,19 @@
 'use strict';
 
 requirejs.config({
-
+    packages: [
+        {
+            name: 'echarts',
+            location: '../src',
+            main: 'echarts'
+        },
+        {
+            name: 'zrender',
+            location: 'http://ecomfe.github.io/zrender/src',
+            //location: '../../../zrender/src',
+            main: 'zrender'
+        }
+    ],
     baseUrl:'lib',
     paths:{
 
@@ -19,7 +31,6 @@ requirejs.config({
         BView:'../js/component/abstract.view',
         BModule:'../js/module/abstract.module',
         BApp:'../js/abstract.app'
-
     },
     skim:{
         punk:{

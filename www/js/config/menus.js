@@ -57,6 +57,11 @@ define([],function(){
                     name:"ImgUpload 上传图片",
                     id:"#imgUpload",
                     key:"imgUpload,图片预览,异步上传，上传进度"
+                },
+                {
+                    name:"ccharts",
+                    id:"#ccharts",
+                    key:"图标 canvas"
                 }
             ]
         },
@@ -71,8 +76,8 @@ define([],function(){
                     key:"图片预览"
                 },
                 {
-                    name:"canvas chart",
-                    id:"#canvasChart",
+                    name:"echarts",
+                    id:"#echarts",
                     key:"图标 canvas"
                 }
             ]
