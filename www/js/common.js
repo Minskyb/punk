@@ -27,6 +27,8 @@ requirejs.config({
         css:'require/require.css-0.1.8.min',
         underscore:'underscore/underscore-min-1.8.3',
         punk:'punk/js/punk',
+        react:'react/react',
+        jsx:'react/JSXTransformer',
 
         BView:'../js/component/abstract.view',
         BModule:'../js/module/abstract.module',

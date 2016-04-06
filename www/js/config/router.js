@@ -17,6 +17,8 @@ define([],function(){
         "imgPreview":"图片预览",
         "imgUpload":"imgUpload,图片预览,异步上传，上传进度",
         "echarts":"图标 canvas",
-        'ccharts':"图标 canvas"
+        'ccharts':"图标 canvas",
+        "canvasChart":"图标 canvas",
+        "reactjs":"reactjs"
     }
 });

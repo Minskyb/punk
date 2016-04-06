@@ -79,6 +79,11 @@ define([],function(){
                     name:"echarts",
                     id:"#echarts",
                     key:"图标 canvas"
+                },
+                {
+                    name:"reactjs ",
+                    id:"#reactjs",
+                    key:"reactjs"
                 }
             ]
         }
