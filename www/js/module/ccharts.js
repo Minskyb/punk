@@ -73,6 +73,9 @@ define([
 
         BM.prototype.render.call(this);
 
+        var date = new Date();
+        //alert(date.getTime().toString());
+
         var canvas = $("#main")[0];
         if(!canvas.getContext){
             console.error("your browser don't support canvas");
@@ -81,11 +84,6 @@ define([
         var context = canvas.getContext("2d");
         canvas.width = canvas.clientWidth;
         canvas.height = canvas.clientHeight;
-//        context.beginPath();
-//        context.moveTo(20,canvas.height-20);
-//        context.lineTo(canvas.width-20,canvas.height-20);
-//        context.closePath();
-//        context.stroke();
         drawAxis.call(this,context,canvas.clientWidth,canvas.clientHeight,20);
     }
 

@@ -19,6 +19,7 @@ define([],function(){
         "echarts":"图标 canvas",
         'ccharts':"图标 canvas",
         "canvasChart":"图标 canvas",
-        "reactjs":"reactjs"
+        "reactjs":"reactjs",
+        "layer":"两图层叠移"
     }
 });

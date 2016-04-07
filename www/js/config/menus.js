@@ -84,6 +84,11 @@ define([],function(){
                     name:"reactjs ",
                     id:"#reactjs",
                     key:"reactjs"
+                },
+                {
+                    name:"两图层叠移 ",
+                    id:"#layer",
+                    key:"layer"
                 }
             ]
         }
