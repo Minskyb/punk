@@ -8,79 +8,87 @@ define(function(require){
 
     var $ = require('jquery');
 
-    var ccharts = {};
 
-    ccharts.version = '1.0.0';
-    ccharts.dependencies = {
-        jquery:'1.9.1'
+    var ccharts = {
+        version : '1.0.0',
+        dependencies : {
+            jquery:'1.9.1'
+        }
     }
+        ,_instance = [] // 实例对象集
+        ,_baseId = Date.now()-1
+        ,_DATA_CHARTS_ID = "data-charts-id";
 
-    var _idBase = new Date() - 0;
-    // 保存 ccharts 实例
-    var _instance = {};
-    var DOM_ATTRIBUTE_KEY = 'ccharts_instance';
+
 
     ccharts.init = function(dom){
 
-        var key = dom.getAttribute(DOM_ATTRIBUTE_KEY);
-        if(!key){
-            key = _idBase++;
-            dom.setAttribute(DOM_ATTRIBUTE_KEY,key);
+        if(!dom.getContext){
+            console.error("your browser don't support canvas");
+            return ;
+        }
+        var id = dom.getAttribute(_DATA_CHARTS_ID);
+        if(id){
+            _instance[id]._dispose();
+            delete _instance[id];
+        }
+        if(!id){
+            id = _baseId++;
+            dom.setAttribute(_DATA_CHARTS_ID,id);
         }
 
-        if(_instance[key]){
-            // 同一个 DOM 上只能 init 一次。
-            _instance[key].dispose();
-        }
+        var charts = new CCharts();
+        _instance[id] = charts;
 
-        var instance = new CCharts(dom);
-        _instance[key] = instance;
-        instance.id = key;
-        return instance;
+        return charts;
     }
 
-    function CCharts(dom){
 
-        this.dom = dom;
+    function CCharts(){
 
+        // 初始化事件监听？
         this._init();
-    }
-
-    CCharts.default = {
-
     }
 
     CCharts.prototype._init = function(){
 
+        // 保存几经初始化好的图标
         this.chart = {};
-
     }
 
-    CCharts.prototype._render = function(){
-
-       this._series(this._option.series);
-    }
-    // notMerge = true 数据不替换，转为添加。
-    CCharts.prototype.setOption = function(option,notMerge){
-
-       notMerge ? this._addOption(option) : this._setOption(option);
+    CCharts.prototype.setOption = function(option,isMerge){
+        isMerge ? this._mergeOption(option) : this._setOption(option);
     }
 
     CCharts.prototype._setOption = function(option){
 
-        this._option = $.extend(true,CCharts.default,this.getOption(),option);
+        this.originData = option;
+        this._refresh();
     }
 
-    CCharts.prototype._addOption = function(options){
+    CCharts.prototype._mergeOption = function(option){
+
+        this.originData = $.extend(true,this.originData,option);
+        this._refresh();
+    }
+
+    CCharts.prototype._refresh = function(){
+        // 数据解析
+        this._chartType();
+    }
+
+    CCharts.prototype._chartType = function(){
+        var series = this.option.series
+        for(var i = 0,len = series.length ; i < len ; i ++){
+            
+        }
+    }
+
+    CCharts.prototype._dispose = function(){
 
     }
 
-    CCharts.prototype.dispose = function(){
 
-        // 清空所有；
-        var key = this.dom.getAttribute(DOM_ATTRIBUTE_KEY);
-        key &&  delete _instance[key];
-    }
 
 
 
