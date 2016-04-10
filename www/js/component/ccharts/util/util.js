@@ -7,6 +7,13 @@ define(function(require){
 
     var util = {};
 
+    util.inherits = function(ChildClazz,BaseClazz){
+
+        function TempClazz(){};
+        TempClazz.prototype = BaseClazz.prototype;
+        ChildClazz.prototype = new TempClazz();
+        ChildClazz.prototype.constructor = ChildClazz;
+    }
 
     return util;
 });

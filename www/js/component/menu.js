@@ -3,14 +3,14 @@
  */
 'use strict';
 
-define([
-    'jquery',
-    'BView',
-    'text!app/component/menu.html',
-    '../config/menus',
-    'extendJquery',
-    'punk'
-],function($,BV,template,menus){
+define(function(require){
+
+    var $ = require('jquery')
+        ,BV = require('BView')
+        ,template = require('text!app/component/menu.html')
+        ,menus = require( 'app/config/menus')
+        ,extendJquery = require('extendJquery')
+        ,punk = require('punk');
 
     function Menu(options){
         BV.call(this,options);

@@ -3,11 +3,11 @@
  */
 'use strict';
 
-define([
-    'jquery',
-    'BView',
-    'extendJquery'
-],function($,BV){
+define(function(require){
+
+    var $ = require('jquery')
+        ,BV = require('BView')
+        ,extendJquery = require('extendJquery');
 
     function BModule(options){
 

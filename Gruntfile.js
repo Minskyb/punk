@@ -22,14 +22,14 @@ module.exports = function(grunt){
                     'js/**/*.js'
                 ],
                 dest:'dist/js/<%=pkg.name%>.js'
-            },
-            www:{
-                src:[
-                    'www/css/main.css',
-                    'www/lib/punk/css/punk.css'
-                ],
-                dest:'www/css/main.css'
             }
+//            ,www:{
+//                src:[
+//                    'www/css/main.css',
+//                    'www/lib/punk/css/punk.css'
+//                ],
+//                dest:'www/css/main.css'
+//            }
         },
         uglify:{
             dist:{
@@ -84,10 +84,12 @@ module.exports = function(grunt){
                     'less/**/*.less',
                     'js/*.js'
                 ],
-                tasks:['dist.watch','www.watch']
+//                tasks:['dist.watch','www.watch']
+                tasks:['dist.watch']
             },
             www:{
                 files:['www/less/**/*.less'],
+//                tasks:['www.watch']
                 tasks:['www.watch']
             }
         },
@@ -137,7 +139,7 @@ module.exports = function(grunt){
     grunt.registerTask('www.watch',[
         'clean:www',
         'less:www',
-        'concat:www',
+//        'concat:www',
         'cssmin:www'
     ]);
 

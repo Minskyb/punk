@@ -5,8 +5,9 @@
 
 define(function(require){
 
-    function Base(){
+    function ChartBase(){
 
     }
 
+    return ChartBase;
 });

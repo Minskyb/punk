@@ -3,12 +3,12 @@
  */
 'use strict';
 
-define([
-    'jquery',
-    'BModule',
-    'text!app/module/ccharts.html',
-    'extendJquery'
-],function($,BM,template){
+define(function(require){
+
+    var $ = require('jquery')
+        ,BM = require('BModule')
+        ,template = require('text!app/module/ccharts.html')
+        ,extendJquery = require('extendJquery');
 
     function MCCharts(options){
         BM.call(this,options);
@@ -70,6 +70,26 @@ define([
     }
 
     MCCharts.prototype.render = function(){
+
+
+        var a = {
+            one :{
+                name:'li',
+                age:26
+            }
+        }
+
+
+        function hello(b){
+            b.one.name = 'huan';
+        }
+        hello($.extend(true,{},a));
+
+        console.log(JSON.stringify(a));
+
+        hello(a);
+
+        console.log(JSON.stringify(a));
 
         BM.prototype.render.call(this);
 

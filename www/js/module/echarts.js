@@ -9,7 +9,7 @@ define([
     'text!app/module/echarts.html',
     'echarts',
     'echarts/chart/bar',
-    'echarts/chart/line',
+//    'echarts/chart/line',
     'extendJquery'
 ],function($,BM,template,ec){
 
@@ -31,6 +31,9 @@ define([
         BM.prototype.render.call(this);
         var myChart = ec.init(document.getElementById('main'));
         myChart.setOption({
+            title:{
+                text:"hello"
+            },
             tooltip : {
                 trigger: 'axis'
             },

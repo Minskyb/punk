@@ -29,7 +29,7 @@ define([
 
         this.scrollTop = 0;
 
-        $(".auto").each(function(){
+        $(".auto").each(function(i){
             var $this = $(this);
             console.log($this.css("background-position-y"));
             $this.data("pk-y",$this.css("background-position-y"));

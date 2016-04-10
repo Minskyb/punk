@@ -40,4 +40,4 @@ requirejs.config({
             exports:'punk'
         }
     }
-})
+});

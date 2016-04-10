@@ -3,9 +3,10 @@
  */
 'use strict';
 
+
 define([
     'jquery',
-    '../js/config/router',
+    'app/config/router',
     'extendJquery'
 ],function($,router){
 
