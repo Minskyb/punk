@@ -10,14 +10,15 @@ define(function(require){
         ,Axis = require('../component/axis');
 
 
-    function Bar(myChart){
+    function Bar(option,myChart){
         this.myChart = myChart;
+        this.option = option;
     }
 
 //    util.inherits(Bar,ChartBase);
 
-    Bar.prototype.refresh = function(series){
-
+    Bar.prototype.refresh = function(option){
+        this.option = option;
     }
 
     require('../chart').define('bar',Bar);

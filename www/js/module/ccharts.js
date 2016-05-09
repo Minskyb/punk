@@ -8,7 +8,9 @@ define(function(require){
     var $ = require('jquery')
         ,BM = require('BModule')
         ,template = require('text!app/module/ccharts.html')
-        ,extendJquery = require('extendJquery');
+        ,extendJquery = require('extendJquery')
+        ,cchart = require('app/component/ccharts/ccharts')
+        ,bar = require('app/component/ccharts/chart/bar');
 
     function MCCharts(options){
         BM.call(this,options);
@@ -71,74 +73,44 @@ define(function(require){
 
     MCCharts.prototype.render = function(){
 
-
-        var a = {
-            one :{
-                name:'li',
-                age:26
-            }
-        }
-
-
-        function hello(b){
-            b.one.name = 'huan';
-        }
-        hello($.extend(true,{},a));
-
-        console.log(JSON.stringify(a));
-
-        hello(a);
-
-        console.log(JSON.stringify(a));
-
         BM.prototype.render.call(this);
 
-        var date = new Date();
-        //alert(date.getTime().toString());
-
-        var canvas = $("#main")[0];
-        if(!canvas.getContext){
-            console.error("your browser don't support canvas");
-            return
-        }
-        var context = canvas.getContext("2d");
-        canvas.width = canvas.clientWidth;
-        canvas.height = canvas.clientHeight;
-        drawAxis.call(this,context,canvas.clientWidth,canvas.clientHeight,20);
+        var myChart = cchart.init(document.getElementById("main"));
+        myChart.setOption(this.option);
     }
 
-    function drawAxis(context,width,height,pt,pr,pb,pl){
-
-        if(arguments.length == 4)
-        pr = pb = pl =pt;
-
-        context.lineWidth = 1;
-        context.strokeStyle = "#333";
-        context.gloableAlpha = 1;
-        context.translate(pl,height -pb);
-        context.beginPath();
-        context.moveTo(0,0);
-        context.lineTo(width-pr-pl,0);
-        context.moveTo(0,0);
-        context.lineTo(0,-height+pt+pb);
-        context.closePath();
-        context.stroke();
-
-        context.font="12px Arial";
-        context.textAlign = 'center';
-        context.textBaseline = 'top';
-
-        var num = this.option.xAxis[0].data.length;
-        var eWidth = (width-pl-pr)/num;
-        for(var i = 0 ; i <= num ; i++){
-            context.beginPath();
-            context.moveTo(i*eWidth,0);
-            context.lineTo(i*eWidth,-5);
-            context.closePath();
-            context.stroke();
-            context.fillText(i+1+"月",i*eWidth+eWidth/2,5);
-        }
-    }
+//    function drawAxis(context,width,height,pt,pr,pb,pl){
+//
+//        if(arguments.length == 4)
+//        pr = pb = pl =pt;
+//
+//        context.lineWidth = 1;
+//        context.strokeStyle = "#333";
+//        context.gloableAlpha = 1;
+//        context.translate(pl,height -pb);
+//        context.beginPath();
+//        context.moveTo(0,0);
+//        context.lineTo(width-pr-pl,0);
+//        context.moveTo(0,0);
+//        context.lineTo(0,-height+pt+pb);
+//        context.closePath();
+//        context.stroke();
+//
+//        context.font="12px Arial";
+//        context.textAlign = 'center';
+//        context.textBaseline = 'top';
+//
+//        var num = this.option.xAxis[0].data.length;
+//        var eWidth = (width-pl-pr)/num;
+//        for(var i = 0 ; i <= num ; i++){
+//            context.beginPath();
+//            context.moveTo(i*eWidth,0);
+//            context.lineTo(i*eWidth,-5);
+//            context.closePath();
+//            context.stroke();
+//            context.fillText(i+1+"月",i*eWidth+eWidth/2,5);
+//        }
+//    }
 
     return MCCharts;
 });

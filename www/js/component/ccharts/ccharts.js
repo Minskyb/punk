@@ -56,10 +56,14 @@ define(function(require){
 
         // 保存已经初始化好的图表
         this.charts = {};
+        // 图表刷新状态
         this._chartsState = {};
+        // 图表组件
         this.components = {};
 
         this._originData = {};
+
+        this._chartsData = require('./util/data');
 
         /*预加载组件，并保存到组件库中，方便后面调用*/
         var componentLibrary = require('./component');
@@ -71,6 +75,7 @@ define(function(require){
 
     CCharts.prototype.setOption = function(option,isMerge){
         isMerge ? this._mergeOption(option) : this._setOption(option);
+//        this._chartsData.setData(option,isMerge);
     }
 
     CCharts.prototype._setOption = function(option){
@@ -86,7 +91,7 @@ define(function(require){
     }
 
     CCharts.prototype._render = function(option){
-        // 数据解析
+        // 重置所有刷新状态
         for(var type in this._chartsState){
             this._chartsState[type] = false;
         }
@@ -96,6 +101,16 @@ define(function(require){
     }
 
     CCharts.prototype._parseComponent = function(option){
+
+        /*
+        * title:标题
+        * legend：图例。用不同形状、颜色、文字等标示不同数据列。
+        * tooltip：数据提示框，当鼠标停留在某点上时，以框的形式提示该点的数据。
+        * grid：网格
+        * xAxis：x 轴
+        * yAxis：y 轴
+        * polar：极坐标
+        * */
 
         var componentList = [
             'title', 'legend', 'tooltip','grid',
@@ -154,7 +169,7 @@ define(function(require){
                 this.charts[type] = new ChartClass(option,this);
                 this._chartsState[type] = true;
             }
-            else if(this.charts[type] && !this._chartsStatue[type]){ /* 确保 chart 每次只刷新一次 */
+            else if(this.charts[type] && !this._chartsState[type]){ /* 确保 chart 每次只刷新一次 */
                 var chart = this.charts[type];
                 chart.refresh && chart.refresh(option);
                 this._chartsState[type] = true;
